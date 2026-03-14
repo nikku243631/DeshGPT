@@ -1,1 +1,1 @@
-web: python DeshGPT_V2.py
+web: gunicorn DeshGPT_V2:app
