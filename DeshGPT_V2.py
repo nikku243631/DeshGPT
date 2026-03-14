@@ -11,8 +11,10 @@ app = Flask(__name__)
 
 # ✅ GROQ API KEY (Lifetime Free)
 api_key = os.getenv("GROQ_API_KEY", "____")
-client = Groq(api_key=api_key)
-
+if not api_key:
+    print("GROQ_API_KEY missing")
+else:
+    client = Groq(api_key=api_key)
 chat_history = {}
 image_uploads = {}  # Track uploads per user per day
 
