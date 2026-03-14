@@ -10,7 +10,7 @@ import json
 app = Flask(__name__)
 
 # ✅ GROQ API KEY (Lifetime Free)
-api_key = os.getenv("GROQ_API_KEY", "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")
+api_key = os.getenv("GROQ_API_KEY", "____")
 client = Groq(api_key=api_key)
 
 chat_history = {}
@@ -651,3 +651,8 @@ if __name__ == '__main__':
     print("   ✓ Latest News")
     print("\n" + "="*70 + "\n")
     app.run(debug=False, host='0.0.0.0', port=5000)
+import os
+
+port = int(os.environ.get("PORT", 8080))
+
+app.run(host="0.0.0.0", port=port)
