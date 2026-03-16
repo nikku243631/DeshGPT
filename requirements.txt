@@ -1,6 +1,5 @@
 Flask==2.3.2
-groq==0.7.0
+groq==0.4.2
 requests==2.31.0
 beautifulsoup4==4.12.2
-
 gunicorn
