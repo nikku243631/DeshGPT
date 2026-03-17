@@ -1,13 +1,15 @@
-setuptools
-wheel
-
+--upgrade pip
+setuptools==68.2.2
+wheel==0.41.2
 
 Flask==3.0.0
-python-dotenv==1.0.0
 gunicorn==21.2.0
+requests==2.31.0
+python-dotenv==1.0.0
+
 groq==0.7.0
 google-generativeai==0.8.2
-requests==2.31.0
+
 beautifulsoup4==4.12.2
 feedparser==6.0.10
 wikipedia==1.4.0
