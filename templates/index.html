@@ -1,9 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DeshGPT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeshGPT</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f7f7f8;
+}
+
+.chat {
+    height: 90vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.msg {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 10px;
+    max-width: 75%;
+}
+
+.user {
+    background: #d1e7ff;
+    margin-left: auto;
+}
+
+.bot {
+    background: white;
+}
+
+.input-area {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+}
+
+button {
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+}
+</style>
 </head>
+
 <body>
-    <h1>🚀 DeshGPT LIVE hai bhai!</h1>
+
+<div class="chat" id="chat"></div>
+
+<div class="input-area">
+    <input id="msg" placeholder="Ask anything...">
+    <button onclick="send()">Send</button>
+</div>
+
+<script>
+async function send() {
+    let input = document.getElementById("msg");
+    let text = input.value;
+
+    if (!text) return;
+
+    let chat = document.getElementById("chat");
+
+    chat.innerHTML += `<div class="msg user">${text}</div>`;
+
+    input.value = "";
+
+    let res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: text})
+    });
+
+    let data = await res.json();
+
+    chat.innerHTML += `<div class="msg bot">${data.reply}</div>`;
+
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
 </body>
 </html>
