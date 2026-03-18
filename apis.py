@@ -1,20 +1,29 @@
-from flask import Flask, render_template, request, jsonify
-from apis import get_ai_response
+import os
+import requests
 
-app = Flask(__name__)
+def get_ai_response(message):
+    try:
+        # Simple reply system (test ke liye)
+        if message.lower() in ["hi", "hello"]:
+            return "Hello bhai 😄 kaise ho?"
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+        if "time" in message.lower():
+            from datetime import datetime
+            return datetime.now().strftime("Abhi time hai: %H:%M:%S")
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    data = request.json
-    msg = data.get("message")
+        # Gemini API
+        gemini_key = os.getenv("GEMINI_API_KEY")
 
-    reply = get_ai_response(msg)
+        if gemini_key:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={gemini_key}"
+            headers = {"Content-Type": "application/json"}
+            data = {
+                "contents": [{"parts": [{"text": message}]}]
+            }
 
-    return jsonify({"reply": reply})
+            res = requests.post(url, headers=headers, json=data)
+            result = res.json()
 
-if __name__ == "__main__":
-    app.run()
+            return result["candidates"][0]["content"]["parts"][0]["text"]
+
+        return "API key nahi mili
