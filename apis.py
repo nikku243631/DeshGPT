@@ -1,14 +1,13 @@
 import os
 import requests
+from datetime import datetime
 
 def get_ai_response(message):
     try:
-        # Simple reply system (test ke liye)
         if message.lower() in ["hi", "hello"]:
             return "Hello bhai 😄 kaise ho?"
 
         if "time" in message.lower():
-            from datetime import datetime
             return datetime.now().strftime("Abhi time hai: %H:%M:%S")
 
         # Gemini API
@@ -27,3 +26,6 @@ def get_ai_response(message):
             return result["candidates"][0]["content"]["parts"][0]["text"]
 
         return "API key nahi mili bhai 😅"
+
+    except Exception as e:
+        return "Error: " + str(e)
