@@ -40,14 +40,6 @@ def get_ai_response(message):
             }
 
             res = requests.post(url, headers=headers, json=data)
-            result = res.json()
+result = res.json()
 
-            try:
-                return result["candidates"][0]["content"]["parts"][0]["text"]
-            except:
-                return "API se response nahi aaya bhai 😅"
-
-        return "API key nahi mili bhai 😅"
-
-    except Exception as e:
-        return "Error: " + str(e)
+return str(result)
