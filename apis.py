@@ -26,4 +26,4 @@ def get_ai_response(message):
 
             return result["candidates"][0]["content"]["parts"][0]["text"]
 
-        return "API key nahi mili
+        return "API key nahi mili bhai 😅"
