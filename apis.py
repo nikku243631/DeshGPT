@@ -4,13 +4,12 @@ from datetime import datetime
 
 def get_ai_response(message):
     try:
-        if message.lower() in ["hi", "hello"]:
+        if message.lower() in ["hi", "hello", "hey"]:
             return "Hello bhai 😄 kaise ho?"
 
         if "time" in message.lower():
             return datetime.now().strftime("Abhi time hai: %H:%M:%S")
 
-        # Gemini API
         gemini_key = os.getenv("GEMINI_API_KEY")
 
         if gemini_key:
@@ -23,7 +22,10 @@ def get_ai_response(message):
             res = requests.post(url, headers=headers, json=data)
             result = res.json()
 
-            return result["candidates"][0]["content"]["parts"][0]["text"]
+            if "candidates" in result:
+                return result["candidates"][0]["content"]["parts"][0]["text"]
+            else:
+                return "API se response nahi aaya bhai 😅"
 
         return "API key nahi mili bhai 😅"
 
