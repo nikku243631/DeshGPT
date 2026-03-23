@@ -19,20 +19,8 @@ try:
 except ImportError:
     PDF_OK = False
 
-try:
-    import pytesseract
-    from PIL import Image
-    OCR_OK = True
-except ImportError:
-    OCR_OK = False
-
-try:
-    import cv2
-    import numpy as np
-    CV2_OK = True
-except ImportError:
-    CV2_OK = False
-
+OCR_OK = False
+CV2_OK = False
 try:
     import wikipedia
     WIKI_OK = True
