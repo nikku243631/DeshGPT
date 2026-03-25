@@ -532,8 +532,9 @@ def analyze_video(file_bytes: bytes, filename: str = "video.mp4") -> dict:
 ROUTING_KEYWORDS = {
     "weather": [
         "weather", "mausam", "barish", "rain", "temperature", "temp", "humidity",
-        "aaj ka mausam", "garmi", "sardi", "thand", "forecast", "climate",
+        "aaj ka mausam", "garmi", "sardi", "thand", "forecast", "climate"
     ],
     "crypto": [
-        "bitcoin", "btc", "ethereum", "eth", "crypto", "cryptocurrency", "coin",
-        return "dogecoin"
+        "bitcoin", "btc", "ethereum", "eth", "crypto", "cryptocurrency", "coin", "dogecoin"
+    ]
+}
