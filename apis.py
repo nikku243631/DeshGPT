@@ -538,3 +538,8 @@ ROUTING_KEYWORDS = {
         "bitcoin", "btc", "ethereum", "eth", "crypto", "cryptocurrency", "coin", "dogecoin"
     ]
 }
+def get_ai_response(user_msg):
+    try:
+        return "Hello bhai 😄 kaise ho?"
+    except Exception as e:
+        return "Error: " + str(e)
