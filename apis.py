@@ -543,3 +543,5 @@ def get_ai_response(user_msg):
         return "Hello bhai 😄 kaise ho?"
     except Exception as e:
         return "Error: " + str(e)
+def detect_request_type(msg):
+    return "general"
