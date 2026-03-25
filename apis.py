@@ -19,8 +19,20 @@ try:
 except ImportError:
     PDF_OK = False
 
-OCR_OK = False
-CV2_OK = False
+try:
+    import pytesseract
+    from PIL import Image
+    OCR_OK = True
+except ImportError:
+    OCR_OK = False
+
+try:
+    import cv2
+    import numpy as np
+    CV2_OK = True
+except ImportError:
+    CV2_OK = False
+
 try:
     import wikipedia
     WIKI_OK = True
@@ -524,44 +536,4 @@ ROUTING_KEYWORDS = {
     ],
     "crypto": [
         "bitcoin", "btc", "ethereum", "eth", "crypto", "cryptocurrency", "coin",
-        "dogecoin", "doge", "solana", "bnb", "blockchain", "nft", "defi",
-        "binance", "coinbase", "altcoin", "token",
-    ],
-    "stock": [
-        "stock", "share", "nifty", "sensex", "bse", "nse", "reliance", "tcs",
-        "infosys", "market", "equity", "invest", "mutual fund", "trading",
-    ],
-    "news": [
-        "news", "khabar", "latest", "breaking", "headlines", "aaj ki khabar",
-        "today news", "samachar", "akhbar",
-    ],
-    "cricket": [
-        "cricket", "ipl", "match", "score", "wicket", "runs", "batsman", "bowler",
-        "india vs", "test match", "odi", "t20", "bcci",
-    ],
-    "search": [
-        "search", "find", "dhundho", "batao", "kya hai", "kaun hai",
-        "explain", "samjhao", "tell me", "how to", "kaise", "kyun", "why",
-        "what is", "who is",
-    ],
-    "wikipedia": [
-        "wikipedia", "history", "itihas", "about", "ke baare mein", "information",
-        "jankari", "biography",
-    ],
-}
-
-def detect_request_type(message: str) -> str:
-    """Detect what type of request the user is making."""
-    msg_lower = message.lower()
-
-    scores = {rtype: 0 for rtype in ROUTING_KEYWORDS}
-    for rtype, keywords in ROUTING_KEYWORDS.items():
-        for kw in keywords:
-            if kw in msg_lower:
-                scores[rtype] += 1
-
-    best_type = max(scores, key=scores.get)
-    if scores[best_type] == 0:
-        return "chat"
-
-    return best_type
+        "dogecoi
