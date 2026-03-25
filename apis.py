@@ -536,4 +536,4 @@ ROUTING_KEYWORDS = {
     ],
     "crypto": [
         "bitcoin", "btc", "ethereum", "eth", "crypto", "cryptocurrency", "coin",
-        "dogecoi
+        return "dogecoin"
